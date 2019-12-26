@@ -1,0 +1,56 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.0
+      - image: docker:17.09.1-ce-git  # enable the docker build support
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - setup_remote_docker
+
+      - run: rm package-lock.json
+      - run: rm -Rf node_modules
+      - run: npm install
+
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #     key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          command: |
+            if [ "$CIRCLE_BRANCH" == "development" ]
+            then
+              export URL=$URL_DEVELOPMENT
+            else
+              export URL=$URL_PRODUCTION
+            fi
+            echo $URL
+      - run: npm run build
+      # build the docker image on success
+      - run:
+          name: Build Success
+          when: on_success
+          command: |
+            docker --version
+            docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD"
+            docker build -t wellnessappbackend/admin:$CIRCLE_BRANCH --build-arg MACHINE_NAME=wellness-admin .
+            docker push wellnessappbackend/admin:$CIRCLE_BRANCH
+            echo "Docker build made successfully!! for wellness admin $CIRCLE_BRANCH"
+      - run:
+          name: Build Failure
+          when: on_fail
+          command: |

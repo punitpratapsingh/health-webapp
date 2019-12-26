@@ -1,0 +1,31 @@
+.row-full{
+    width: 100vw;
+    position: relative;
+    margin-top: 100px;
+   }
+   .data{
+    // background-color: rgb(230, 225, 218);
+}
+.blog-container {
+    padding: 10px;
+    background: #fafafa;
+    margin: 10px;
+    border: solid 1px #f0f0f0;
+    box-shadow: 0px 0px 10px 1px silver;
+}
+.user-picture {
+    position: absolute;
+}
+.user-name {
+    margin-left: 65px;
+}
+.font{
+    font-size: 15px;
+}
+
+.color{
+    color: green;
+}
+.del{
+    color: red;
+}

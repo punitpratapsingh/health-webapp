@@ -1,0 +1,12 @@
+export { default as fetchReducer } from './fetch';
+export { default as loginReducer } from './login';
+export { default as dashboardReducer } from './dashboard';
+export { default as userReducer } from './user';
+export { default as symptomsReducer } from './symptoms';
+export { default as blogsReducer } from './blogs';
+export { default as appointmentReducer } from './appointment';
+export { default as messageReducer } from './message';
+export { default as staticReducer } from './static';
+export { default as foodReducer } from './foodAndLectins';
+export { default as navigationReducer } from './navigation';
+export { default as errorReducer } from './error';
