@@ -43,6 +43,6 @@ npm run server
 ```
 
 ## Help and support
-Contact <a href='mailto:sharma02gaurav@gmail.com?Subject=Help Related to Social App repository'>Gaurav Sharma</a>
+Contact <a href='mailto:punitpratapsingh30@gmail.com?Subject=Help Related to base react repository'>Punit Pratap Singh</a>
 
 
